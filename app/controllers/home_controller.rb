@@ -1,4 +1,4 @@
 class HomeController < ApplicationController
-  def feed
+  def index
   end
 end
