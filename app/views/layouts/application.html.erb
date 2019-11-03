@@ -10,6 +10,63 @@
   </head>
 
   <body>
+
+  <!--Navbar-->
+  
+    <nav class="navbar d-flex">
+      <div class="container-fluid nav-items">
+        <div class="icon">
+          <a class="navbar-brand">
+            <%= fa_stacked_icon "instagram", base: "", class: "fa-2x"%>
+              Instagram
+          </a>
+        </div>
+
+        <div class="m-auto">
+          <form class="form-inline search-form">
+            <input class="form-control m-auto" type="text" placeholder="🔍 search " aria-label="Search">
+          </form>
+        </div>
+
+        <div class="user-section"> 
+          <a><i class="fa fa-compass"></i></a>
+          <a><i class="fa fa-heart"></i></a>
+          <a><i class="fa fa-user"></i></a>
+        </div>
+      </div>
+    </nav>
+
+  <!--Main-content-->
+
+  <main class="container">
     <%= yield %>
+  </main>
+
+  <!--Footer-->
+
+  <footer class="container footer">
+    <div class="container d-flex">
+      <ul style="list-style-type: none;">
+      <!--Get rid of bullet points-->
+        <li>ABOUT US</li>
+        <li>SUPPORT</li>
+        <li>PRESS</li>
+        <li>API</li>
+        <li>JOBS</li>
+        <li>PRIVACY</li>
+        <li>TERMS</li>
+        <li>DIRECTORY</li>
+        <li>TERMS</li>
+        <li>DIRECTORY</li>
+        <li>PROFILES</li>
+        <li>HASHTAGS</li>
+        <li>LANGUAGE</li>
+      </ul>
+      <p> © 2019 INSTAGRAM FROM FACEBOOK</p>
+
+    </div>
+  </footer>
+
   </body>
+
 </html>
