@@ -3,20 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 //// Users show page banner ////
+.user-profile {
+}
 
 .profile-row-1 {
     text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
     .username {
         margin: 0 auto;
-        display: inline;
-        text-align: center;
-        padding-top: 1.5%;
-        padding-bottom: 1.5%;
+        display: inline-block;
     }
 }
 
 .profile-row-2 {
-    padding-bottom: 1.5%;
+    padding-bottom: 15px;
     .user-avatar {
         display: flex;
         flex-flow: row;
@@ -29,6 +30,25 @@
         img {
             border-radius: 50%;
         }
+    }
+    .user-info {
+      padding-top: 38px;
+      padding-left: 48px;
+      .posts {
+        width: 116px;
+      }
+      .followers {
+        width: 116px;
+      }
+      .following {
+        width: 116px;
+      }
+      .metric {
+        font-weight: bold;
+      }
+      p {
+        text-align: center;
+      }
     }
 }
 
@@ -47,6 +67,12 @@
 .profile-row-5 {
     .edit-profile{
         padding-left: 10%;
+        padding-bottom: 15px;
+        width: 90%;
+    }
+    button {
+      display: block;
+      width: 100%;
     }
 }
 
@@ -136,4 +162,4 @@
     input[type='submit']{
       color: white;
     }
-  }
+}
