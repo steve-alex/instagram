@@ -133,7 +133,6 @@
 }
 
 
-
 .form-edit-user{
     padding: 30px 100px 10px 50px;
   .form-group, input{
@@ -157,4 +156,23 @@
     line-height: 22px;
     margin-bottom: 0;
   }
+}
+
+.users-posts  {
+  margin: 0 auto;
+  width: 83.6%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 100px;
+  text-align: center;
+  .user-post {
+  
+    margin: 0 auto;
+    padding: 11px;
+  }
+    img {
+      height: 272.67px;
+      width: 272.67px;
+    }
 }

@@ -3,14 +3,18 @@
   <div class="post">
 
     <div class="post-banner">
-      <div class="user-avatar">
-        <% if current_user.avatar.attached? %>
-          <%= image_tag current_user.avatar %>
-        <% end %>
-      </div>
-      <div class="post-username">
-        <p><%= post.user.username %></p>
-      </div>
+      <a href="<%= user_path(current_user) %>">
+        <div class="user-avatar">
+          <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar %>
+          <% end %>
+        </div>
+      </a>
+      <a href="<%= user_path(current_user) %>">
+        <div class="post-username">
+          <p><%= post.user.username %></p>
+        </div>
+      </a>
     </div>
 
     <div class="post-image">

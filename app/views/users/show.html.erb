@@ -18,7 +18,7 @@
     <div class="col-md-8 user-info">
       <div class="user-metrics row">
         <div class="col-xs post-count">
-          <p class="metric">12</p>
+          <p class="metric"><%= current_user.posts.length %></p>
           <p>Posts</p>
         </div>
         <div class="col-xs followers">
@@ -51,7 +51,7 @@
     </a>
   </div>
 
-    <div class="user-tabs">
+  <div class="user-tabs">
       <a class="tab" href="<%= new_post_path %>">
         <i class="fa fa-plus-square"></i>
         NEW POST
@@ -64,6 +64,15 @@
         <i class="fa fa-tag"></i>
         TAGGED
       </a>
-    </div>
+  </div>
+
+  <div class="users-posts">
+    <% current_user.posts.each do |post| %>
+      <div class="user-post">
+        <%= image_tag post.image, class: 'main-image' %>
+      </div>
+    <% end %>
+  </div>  
+
 
 </div>
