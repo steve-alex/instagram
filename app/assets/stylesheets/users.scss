@@ -28,20 +28,21 @@
             flex-grow: 1;
         }
         img {
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
         }
     }
     .user-info {
-      padding-top: 38px;
-      padding-left: 48px;
+      padding-top: 48px;
       .post-count {
-        width: 116px;
+        width: 180px;
       }
       .followers {
-        width: 116px;
+        width: 180px;
       }
       .following {
-        width: 116px;
+        width: 180px;
       }
       .metric {
         font-weight: bold;
@@ -131,6 +132,8 @@
     }
 }
 
+
+
 .form-edit-user{
     padding: 30px 100px 10px 50px;
   .form-group, input{
@@ -144,22 +147,14 @@
       text-align: right;
       font-weight: 600;
     }
-  .avatar{
-      height: 38px;
-      width: 38px;
-      border-radius: 50%;
-    }
-    .username{
-      font-size: 20px;
-      line-height: 22px;
-      margin-bottom: 0;
-    }
-    .change-photo{
-      color: #3897f0;
-      text-decoration: none;
-      font-size: 13px;
-    }
-    input[type='submit']{
-      color: white;
-    }
+      img {
+        height: 58px;
+        width: 58px;
+        border-radius: 50%;
+      }
+  .new-avatar-upload{
+    font-size: 25px;
+    line-height: 22px;
+    margin-bottom: 0;
+  }
 }

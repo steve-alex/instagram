@@ -4,7 +4,9 @@
 
     <div class="post-banner">
       <div class="user-avatar">
-        <img src="/assets/avatar.jpg">
+        <% if current_user.avatar.attached? %>
+          <%= image_tag current_user.avatar %>
+        <% end %>
       </div>
       <div class="post-username">
         <p><%= post.user.username %></p>
