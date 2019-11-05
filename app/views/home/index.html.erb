@@ -1,0 +1,31 @@
+<div class="posts">
+<% @posts.each do |post| %>
+  <div class="post">
+
+    <div class="post-banner">
+      <div class="user-avatar">
+        <img src="/assets/avatar.jpg">
+      </div>
+      <div class="post-username">
+        <p><%= post.user.username %></p>
+      </div>
+    </div>
+
+    <div class="post-image">
+      <%= image_tag post.image, class: 'main-image' %>
+    </div>
+
+    <div class="post-glyphs">
+      <div class=glyph-container>
+        <i class="fa fa-heart"></i>
+        <i class="fa fa-comment"></i>
+      </div>
+    </div>
+
+    <div class="post-description">
+      <p><strong><%= post.user.username%></strong> <%= post.description %></p>
+    </div>
+
+  </div>
+<% end %>
+</div>
