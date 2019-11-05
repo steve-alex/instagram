@@ -30,7 +30,9 @@
         </div>
 
         <div class="user-section"> 
-          <a><i class="fa fa-compass"></i></a>
+          <a href="<%= posts_path %>">
+            <i class="fa fa-compass"></i>
+          </a>
           <a><i class="fa fa-heart"></i></a>
           <% if user_signed_in? %>
             <a href="<%= user_path(current_user) %>">

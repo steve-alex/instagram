@@ -1,0 +1,15 @@
+<%= form_with model: @post, html: {class: "new-post-form"} do |f| %>
+    <div class="form-entry">
+        <%= f.text_field :description%>
+    </div>
+    <div class="form-entry">
+        <%= f.file_field :image%>
+    </div>
+    <div class="form-entry">
+        <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
+    </div>
+    <br>
+    <div class="text-center">
+        <%= f.submit 'Create Post', class: 'btn btn-primary' %>
+    </div>
+<% end %>
