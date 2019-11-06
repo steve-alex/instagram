@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'users/:id/followed_users', to: 'users#followed_users', as: 'user_followed_users'
   
   resources :posts, only: [:new, :create, :index, :show]
+
+  resources :relationships, only: [:index, :new, :create]
   
   root :to => "home#index"
 end

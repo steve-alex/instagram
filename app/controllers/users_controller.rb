@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     end
 
     def followers
+        byebug
         @user = User.find(params[:id])
         render json: @user.followers
     end
