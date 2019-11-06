@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:show, :edit, :update]
+  get 'users/:id/followers', to: 'users#followers', as: 'user_followers'
+  get 'users/:id/followed_users', to: 'users#followed_users', as: 'user_followed_users'
+  
   resources :posts, only: [:new, :create, :index, :show]
   
   root :to => "home#index"

@@ -2,15 +2,15 @@
 
   <div class="profile-row-1 row">
     <div class="username">
-        <h2 class="name"><%=current_user.username%></h2>
+        <h2 class="name"><%=@user.username%></h2>
     </div>
   </div>
 
   <div class="profile-row-2 row">
     <div class="user-avatar col-md-4">
       <div class="image-wrapper">
-        <% if current_user.avatar.attached? %>
-          <%= image_tag current_user.avatar %>
+        <% if @user.avatar.attached? %>
+          <%= image_tag @user.avatar %>
         <% end %>
       </div>
     </div>
@@ -18,15 +18,15 @@
     <div class="col-md-8 user-info">
       <div class="user-metrics row">
         <div class="col-xs post-count">
-          <p class="metric"><%= current_user.posts.length %></p>
+          <p class="metric"><%= @user.posts.length %></p>
           <p>Posts</p>
         </div>
         <div class="col-xs followers">
-          <p class="metric">195</p>
+          <p class="metric"><%= @user.followers.length %></p>
           <p>Followers</p>
         </div>
         <div class="col-xs following">
-          <p class="metric">345</p>
+          <p class="metric"><%= @user.followed_users.length %></p>
           <p>Following</p>
         </div>
       </div>
@@ -35,20 +35,24 @@
 
   <div class= "profile-row-3 row">
     <div class="user-header">
-      <h4 class="username"><%=current_user.name%></h4>
+      <h4 class="username"><%=@user.name%></h4>
     </div>
   </div>
 
   <div class= "profile-row-4 row">
     <div class="user-description">
-      <p><%=current_user.bio%></p>
+      <p><%=@user.bio%></p>
     </div>
   </div>
 
   <div class="profile-row-5 row">
-    <a class="edit-profile" href="<%= edit_user_path(current_user)%>">
-      <button>Edit Profile</button>
-    </a>
+    <% if current_user.id == @user.id %>
+      <a class="edit-profile" href="<%= edit_user_path(current_user)%>">
+        <button>Edit Profile</button>
+      </a>
+    <% else %>
+        <button id="follow_button">Follow User</button>
+    <% end %>
   </div>
 
   <div class="user-tabs">
@@ -67,7 +71,7 @@
   </div>
 
   <div class="users-posts">
-    <% current_user.posts.each do |post| %>
+    <% @user.posts.each do |post| %>
       <div class="user-post">
         <%= image_tag post.image, class: 'main-image' %>
       </div>
