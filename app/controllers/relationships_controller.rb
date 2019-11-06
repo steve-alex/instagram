@@ -8,6 +8,7 @@ class RelationshipsController < ApplicationController
     def create
         @user = User.find(params[:id])
         current_user.follow!(@user)
+        render json: @user
     end
 
 end

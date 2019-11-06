@@ -6,6 +6,9 @@ window.addEventListener("DOMContentLoaded", () => {
     
     followButton.addEventListener("click", () => followUser())
 
+    // const handleFollowUser = () => {
+    //     return fetch(`${BASE_URL}/`)
+    // }
     const followUser = () => {
         return fetch(`${RELATIONSHIP_URL}`, {
             "method": "POST",
@@ -17,7 +20,12 @@ window.addEventListener("DOMContentLoaded", () => {
                 id: event.target.id
             })
             }).then(resp => resp.json())
-              .then(() => console.log)
+              .then((data) => renderFollowers(data))
+    }
+
+    const renderFollowers = (data) => {
+        const followerCount = document.getElementsByClassName("metric")[1];
+        followerCount.textContent = parseInt(followerCount.textContent) + 1;
     }
        
 })
