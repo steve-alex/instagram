@@ -1,0 +1,29 @@
+<div class="post-show row">
+    <div class="col-md-8 image-container">
+        <%=image_tag(@post.image, class:'image')%>
+<!-- show post image -->
+    </div>
+    <div class="col-md-4 comments-container" >
+        <div class="row user-banner">
+            <div class="avatar">
+                <% if current_user.avatar.attached? %>
+                    <%= image_tag(current_user.avatar) %>
+                <% end %>
+            </div>
+            <div class="username">
+                <a href="<%=user_path(current_user)%>">
+                    <h5><%= current_user.username%></h5>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+        </div>
+        <div class="row">
+        </div>
+        <div class=glyph-container>
+            <i class="fa fa-heart"></i>
+            <i class="fa fa-comment"></i>
+        </div>
+<!-- show user info and description of post -->
+    </div>
+</div>
