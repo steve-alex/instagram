@@ -1,5 +1,9 @@
 class Post < ApplicationRecord
   belongs_to :user
+
+  has_many :likes
+  has_many :likers, through: :likes, source: :user
+
   has_one_attached :image
 
   validate :image_presence
@@ -7,10 +11,6 @@ class Post < ApplicationRecord
 
   def image_presence
     errors.add(:image, "can't be blank") unless image.attached?
-  end
-
-  def owner
-    User.find(self.user_id).username
   end
 
 end
