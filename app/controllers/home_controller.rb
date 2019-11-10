@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @posts = Post.all.where(user_id: current_user.id).order(created_at: :desc)
+    @posts = current_user.get_all_posts
   end
 end
