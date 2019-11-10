@@ -24,6 +24,11 @@ class UsersController < ApplicationController
         render json: @user.followed_users
     end
 
+    # def posts
+    #     @posts = Post.where(user_id: params[:id])
+    #     render json: @posts
+    # end
+
     private
 
     def user_params 

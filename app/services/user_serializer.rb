@@ -16,7 +16,8 @@ class UserSerializer
           bio: @user.bio,
           phone: @user.phone,
           gender: @user.gender,
-          avatar: get_avatar_url()
+          avatar: get_avatar_url(),
+          posts: @user.posts
         }
       }.to_json()
     end
@@ -26,4 +27,8 @@ class UserSerializer
     def get_avatar_url
       url_for(@user.avatar)
     end
+
+    # def unpack_user_posts
+    #   @user.posts.each
+    # end
 end
