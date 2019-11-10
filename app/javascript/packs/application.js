@@ -3,7 +3,10 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-require("packs/main.js") 
+require("packs/api.js")
+require("packs/post.js")
+require("packs/main.js")
+require("packs/user.js")
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()

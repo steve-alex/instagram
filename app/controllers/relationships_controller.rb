@@ -1,5 +1,4 @@
 class RelationshipsController < ApplicationController
-
     def index
         @relationships = Relationship.all
         render json: @relationships
@@ -10,5 +9,4 @@ class RelationshipsController < ApplicationController
         current_user.follow!(@user)
         render json: @user
     end
-
 end
