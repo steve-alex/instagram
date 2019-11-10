@@ -13,4 +13,12 @@ class Post < ApplicationRecord
     errors.add(:image, "can't be blank") unless image.attached?
   end
 
+  def imageURL
+    rails_blob_path(self.image, only_path: true) if self.image.attached?
+  end
+
+  def image_filename
+    self.image.filename.to_s if image.attached?
+  end
+
 end

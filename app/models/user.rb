@@ -28,5 +28,12 @@ class User < ApplicationRecord
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy!
   end
+
+  def get_all_posts
+    followers_posts = self.followers.map{|user| user.posts}
+    all_posts = followers_posts.concat(self.posts).flatten
+    all_posts.sort_by!{|post| post.created_at}.reverse!
+    all_posts
+  end
   
 end
