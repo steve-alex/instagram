@@ -29,11 +29,11 @@ class User < ApplicationRecord
     relationships.find_by(followed_id: other_user.id).destroy!
   end
 
-  def get_all_posts
+  def get_users_post_feed
     followers_posts = self.followers.map{|f| f.posts}
     all_posts = followers_posts.concat(self.posts).flatten
     all_posts.sort_by!{|post| post.created_at}.reverse!
-    all_posts
+    all_posts.map{|post| {"user" => post.user, "post" => post}}
   end
   
 end
