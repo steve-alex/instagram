@@ -1,27 +1,33 @@
-BASE_URL = `http://localhost:3000`;
-
 window.addEventListener("DOMContentLoaded", () => {
-    
+    let postDataArray = [];
+
     const renderPage = () => {
         let posts = document.getElementsByClassName("posts")[0]
         if (!!posts) {
-            getUsersPostFeed()
+            renderPostFeed()
         } else {
             console.log("Nope")
         }
     }
 
-    const getUsersPostFeed = () => {
-        return fetch(`${BASE_URL}/users/1/feed`)
-        .then(resp => resp.json())
-        .then(postsData => postsData.forEach(post => getPost(post)))
+    const renderPostFeed = () => {
+        getUsersPostFeed()
+        .then(postData => postData.forEach(post => renderPost(post)))
     }
 
-    const getPost = (post) => {
-        return fetch(`${BASE_URL}/posts/${post.id}`)
-        .then(resp => resp.json())
-        .then(postData => renderPost(postData))
+
+    let getUsersPostFeed = async () => {
+        let response = await fetch(`http://localhost:3000/users/1/feed`);
+        let results = await response.json()
+        let posts = []
+        for (let i=0; i<results.length; i++){
+            let res = await fetch(`http://localhost:3000/posts/${results[i].id}`);
+            let secondRes = await res.json();
+            posts.push(secondRes)
+        }
+        return posts
     }
+
 
     const renderPost = (postData) => {
         let posts = document.getElementsByClassName("posts")[0]
@@ -73,8 +79,15 @@ window.addEventListener("DOMContentLoaded", () => {
         let comment = document.createElement("i")
         comment.setAttribute("class", "fa fa-comment")
         glyphsContainer.appendChild(comment)
+
+        let descriptionContainer = document.createElement("div")
+        descriptionContainer.setAttribute("class", "post-description")
+        postContainer.appendChild(descriptionContainer)
+
+        let description = document.createElement("p")
+        description.innerHTML = `<strong>${postData.user.username}</strong> ${postData.post.description}`
+        descriptionContainer.appendChild(description)
     }
 
     renderPage();
-
 })

@@ -30,12 +30,7 @@ class UsersController < ApplicationController
       @posts = current_user.get_users_post_feed
       render json: @posts
     end
-
-    # def posts
-    #     @posts = Post.where(user_id: params[:id])
-    #     render json: @posts
-    # end
-
+    
     private
 
     def user_params 
