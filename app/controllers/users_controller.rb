@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
     def show
-        user = User.find(params[:id])
-        render json: UserSerializer.new(user).to_serialized_json
+        @user = User.find(params[:id])
+        user_path(@user)
+        # render json: user
+        # render json: UserSerializer.new(user).to_serialized_json
     end
 
     def edit
@@ -22,6 +24,11 @@ class UsersController < ApplicationController
     def followed_users
         @user = User.find(params[:id])
         render json: @user.followed_users
+    end
+
+    def feed
+      @posts = current_user.get_users_post_feed
+      render json: @posts
     end
 
     # def posts

@@ -33,7 +33,6 @@ class User < ApplicationRecord
     followers_posts = self.followers.map{|f| f.posts}
     all_posts = followers_posts.concat(self.posts).flatten
     all_posts.sort_by!{|post| post.created_at}.reverse!
-    all_posts.map{|post| {"user" => post.user, "post" => post}}
   end
   
 end

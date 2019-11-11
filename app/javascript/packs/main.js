@@ -5,20 +5,25 @@ window.addEventListener("DOMContentLoaded", () => {
     const renderPage = () => {
         let posts = document.getElementsByClassName("posts")[0]
         if (!!posts) {
-            getPosts()
+            getUsersPostFeed()
         } else {
             console.log("Nope")
         }
     }
 
-    const getPosts = () => {
-        return fetch(`${BASE_URL}/posts/3`)
+    const getUsersPostFeed = () => {
+        return fetch(`${BASE_URL}/users/1/feed`)
         .then(resp => resp.json())
-        // .then(console.log)
+        .then(postsData => postsData.forEach(post => getPost(post)))
+    }
+
+    const getPost = (post) => {
+        return fetch(`${BASE_URL}/posts/${post.id}`)
+        .then(resp => resp.json())
         .then(postData => renderPost(postData))
     }
+
     const renderPost = (postData) => {
-        debugger;
         let posts = document.getElementsByClassName("posts")[0]
         let postContainer = document.createElement("div")
         postContainer.className = "post"
@@ -33,8 +38,41 @@ window.addEventListener("DOMContentLoaded", () => {
         postBanner.appendChild(userAvatarContainer)
     
         let avatar = document.createElement("img")
-        avatar.setAttribute("src", postData.post.image_url)
+        avatar.setAttribute("src", postData.user.avatar)
         userAvatarContainer.appendChild(avatar)
+
+        let usernameContainer = document.createElement("div")
+        usernameContainer.setAttribute("class", "post-username")
+        postBanner.appendChild(usernameContainer)
+
+        let username = document.createElement("p")
+        username.textContent = `${postData.user.username}`
+        usernameContainer.appendChild(username)
+
+        let imageContainer = document.createElement("div")
+        imageContainer.setAttribute("class", "post-image")
+        postContainer.appendChild(imageContainer)
+        
+        let image = document.createElement("img")
+        image.setAttribute("src", `${postData.post.image_url}`)
+        image.setAttribute("class", "main-image")
+        imageContainer.appendChild(image)
+
+        let postGlyphs = document.createElement("div")
+        postGlyphs.setAttribute("class", "post-glyphs")
+        postContainer.appendChild(postGlyphs)
+
+        let glyphsContainer = document.createElement("div")
+        glyphsContainer.setAttribute("class", "glyph-container")
+        postGlyphs.appendChild(glyphsContainer)
+
+        let heart = document.createElement("i")
+        heart.setAttribute("class", "fa fa-heart")
+        glyphsContainer.appendChild(heart)
+
+        let comment = document.createElement("i")
+        comment.setAttribute("class", "fa fa-comment")
+        glyphsContainer.appendChild(comment)
     }
 
     renderPage();
