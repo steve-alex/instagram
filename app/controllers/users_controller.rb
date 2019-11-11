@@ -26,11 +26,16 @@ class UsersController < ApplicationController
         render json: @user.followed_users
     end
 
+    def posts
+        @posts = User.find(params[:id]).posts
+        render json: @posts
+    end
+
     def feed
       @posts = current_user.get_users_post_feed
       render json: @posts
     end
-    
+
     private
 
     def user_params 

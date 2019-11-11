@@ -2,11 +2,12 @@ window.addEventListener("DOMContentLoaded", () => {
     let postDataArray = [];
 
     const renderPage = () => {
-        let posts = document.getElementsByClassName("posts")[0]
-        if (!!posts) {
+        let postFeed = document.getElementsByClassName("posts")[0]
+        let userFeed = document.getElementsByClassName("user-profile")[0]
+        if (!!postFeed) {
             renderPostFeed()
-        } else {
-            console.log("Nope")
+        } else if (!!userFeed) {
+            renderUserFeed()
         }
     }
 
@@ -14,7 +15,6 @@ window.addEventListener("DOMContentLoaded", () => {
         getUsersPostFeed()
         .then(postData => postData.forEach(post => renderPost(post)))
     }
-
 
     let getUsersPostFeed = async () => {
         let response = await fetch(`http://localhost:3000/users/1/feed`);
@@ -27,7 +27,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         return posts
     }
-
 
     const renderPost = (postData) => {
         let posts = document.getElementsByClassName("posts")[0]

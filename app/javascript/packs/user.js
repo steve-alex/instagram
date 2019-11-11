@@ -3,6 +3,10 @@ RELATIONSHIP_URL = `${BASE_URL}/relationships`
 
 window.addEventListener("DOMContentLoaded", () => {
 
+    const renderUserFeed = () => {
+        
+    }
+
     const addRelationshipButtonListener = () => {
         const followButton = document.getElementsByClassName("follow_button")[0]
         if (followButton) {
@@ -12,9 +16,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
     
-    // const handleFollowUser = () => {
-    //     return fetch(`${BASE_URL}/`)
-    // }
     const followUser = () => {
         return fetch(`${RELATIONSHIP_URL}`, {
             "method": "POST",
