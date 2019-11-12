@@ -16,12 +16,12 @@ class PostsController < ApplicationController
 
     def show
         post = Post.find(params[:id])
-        render json: PostSerializer.new([post, current_user]).to_serialized_json
+        render json: PostSerializer.new(post, current_user).to_serialized_json
     end
 
     private
 
     def post_params
-        params.require(:post).permit(:description, :user_id, :image)
+        params.require(:post).permit(:user_id, :description, :image)
     end
 end
