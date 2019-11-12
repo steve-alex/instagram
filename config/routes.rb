@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:new, :create, :index, :show]
   post 'posts/:id', to: 'posts#like', as: 'like_post'
-  delete 'posts/:id', to: 'posts#unlike', as: 'unlike_post'
+  patch 'posts/:id', to: 'posts#unlike', as: 'unlike_post'
 
   resources :relationships, only: [:index, :new, :create]
   

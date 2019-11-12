@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     end
 
     def unlike
-
+        Like.find_by(user_id: current_user.id, post_id: params["post_id"]).destroy!
     end
 
     private

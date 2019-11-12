@@ -6,7 +6,9 @@ window.addEventListener("DOMContentLoaded", () => {
         let userFeed = document.getElementsByClassName("user-profile")[0]
         if (!!postFeed) {
             renderPostFeed()
+            console.log("Post feed")
         } else if (!!userFeed) {
+            console.log("Not Post feed")
             renderUserFeed()
         }
     }
@@ -73,33 +75,61 @@ window.addEventListener("DOMContentLoaded", () => {
     const handleToggleHeart = (postData) => {
         //this could be based on whether user already likes the post?
         if (event.target.style.color == "red") {
-            event.target.className = "fa fa-heart-o"
-            event.target.style.color = ""
-            unlikePost(postData)
+            unlikePost(postData, event.target)
         } else {
-            event.target.className = "fa fa-heart"
-            event.target.style.color = "red"
-            likePost(postData)
+            likePost(postData, event.target)
         }
     }
 
-    const likePost = (postData) => {
-        return fetch(`${BASE_URL}/posts/${postData.post.id}`, {
+    const likePost = (postData, likeButton) => {
+        fetch(`${BASE_URL}/posts/${postData.post.id}`, {
             method: "POST",
             headers: {
                 "Content-Type": 'application/json',
-                "Accept": "application/json"
+                "Accept": "application/json",
+                // "Access-Control-Allow-Origin" : "*", 
+                // "Access-Control-Allow-Credentials" : true 
             },
             body: JSON.stringify({
                 post_id: postData["post"]["id"]
             })
         })
         .then(resp => resp.json())
-        .then(console.log("Hello"))
+        // .then(console.log)
+        .then(renderLike(likeButton))
     }
 
-    const unlikePost = (postData) => {
+    const renderLike = (likeButton, data) => {
+        likeButton.className = "fa fa-heart"
+        likeButton.style.color = "red"
+        let likes = likeButton.parentElement.parentElement.nextSibling.children[0]
+        let likesCount = parseInt(likes.textContent.split(" ")[0])
+        likes.textContent = `${likesCount + 1} likes`
+    }   
 
+    const unlikePost = (postData, likeButton) => {
+        fetch(`${BASE_URL}/posts/${postData.post.id}`, {
+            method: "PATCH", 
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": "application/json",
+                // "Access-Control-Allow-Origin" : "*", 
+                // "Access-Control-Allow-Credentials" : true 
+            },
+            body: JSON.stringify({
+                post_id: postData["post"]["id"]
+            })
+        })
+        .then(resp => resp.json())
+        .then(renderUnlikePost(likeButton))
+    }
+
+    const renderUnlikePost = (likeButton, data) => {
+        event.target.className = "fa fa-heart-o"
+        event.target.style.color = ""
+        let likes = likeButton.parentElement.parentElement.nextSibling.children[0]
+        let likesCount = parseInt(likes.textContent.split(" ")[0])
+        likes.textContent = `${likesCount - 1} likes`
     }
 
     renderPage();
