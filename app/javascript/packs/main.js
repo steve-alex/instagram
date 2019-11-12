@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded", () => {
         heart.addEventListener("click", () => handleToggleHeart(postData))
         let comment = createObject("i", "fa fa-comment-o", glyphsContainer)
         let likesContainer = createObject("div", "post-likes", postContainer)
-        let likes_count = createObject("div", "", likesContainer, `${postData.post.likes_count} likes`)
+        let likes_count = createObject("div", "", likesContainer, `${postData.likes.likes_count} likes`)
         let descriptionContainer = createObject("div", "post-description", postContainer)
         let description = createObject("p", "", descriptionContainer)
         description.innerHTML = `<strong>${postData.user.username}</strong> ${postData.post.description}`
@@ -84,7 +84,18 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     const likePost = (postData) => {
-        return fetch('')
+        return fetch(`${BASE_URL}/posts/${postData.post.id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                post_id: postData["post"]["id"]
+            })
+        })
+        .then(resp => resp.json())
+        .then(console.log("Hello"))
     }
 
     const unlikePost = (postData) => {

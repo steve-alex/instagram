@@ -16,7 +16,15 @@ class PostsController < ApplicationController
 
     def show
         post = Post.find(params[:id])
-        render json: PostSerializer.new(post, current_user).to_serialized_json
+        render json: PostSerializer.new(post, current_user, post.likes).to_serialized_json
+    end
+
+    def like
+        Like.create!(user_id: current_user.id, post_id: params["post_id"])
+    end
+
+    def unlike
+
     end
 
     private
